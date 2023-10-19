@@ -55,23 +55,23 @@ const Dashboard = () => {
 
 	return (
 		<Layout>
-			<div className="flex-grow min-h-screen flex justify-center bg-gray-50 py-12 px-4 ">
-				<div className="max-w-5xl w-full space-y-8 ">
-					<div className="flex flex-col items-center space-y-2">
-						<h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-							Welcome, {user ? user.firstName : 'Loading...'}
-						</h2>
-						<p className="mt-2 text-center text-sm text-gray-600">
-							Email: {user ? user.email : 'Loading...'}
-						</p>
-						<button
-							type="submit"
-							onClick={logout}
-							className="mx-auto px-2 py-1 text-white bg-blue-500 rounded-md max-w-xs"
-						>
-							Logout
-						</button>
-					</div>
+			<div className="flex-grow min-h-screen flex justify-center bg-gray-50 py-4 px-4 ">
+				<div className="max-w-5xl w-full space-y-4 ">
+					{/*<div className="flex flex-col items-center space-y-2">*/}
+					{/*	<h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">*/}
+					{/*		Welcome, {user ? user.firstName : 'Loading...'}*/}
+					{/*	</h2>*/}
+					{/*	<p className="mt-2 text-center text-sm text-gray-600">*/}
+					{/*		Email: {user ? user.email : 'Loading...'}*/}
+					{/*	</p>*/}
+					{/*	<button*/}
+					{/*		type="submit"*/}
+					{/*		onClick={logout}*/}
+					{/*		className="mx-auto px-2 py-1 text-white bg-blue-500 rounded-md max-w-xs"*/}
+					{/*	>*/}
+					{/*		Logout*/}
+					{/*	</button>*/}
+					{/*</div>*/}
 					<div className="divide-y divide-gray-200 overflow-hidden rounded-md bg-[#F5F5F5] border w-full">
 						<div className="px-4 py-2 sm:px-6">
 							<h3 className="text-base font-semibold leading-7 text-gray-900">User Information</h3>

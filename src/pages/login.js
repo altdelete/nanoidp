@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import { useEffect } from "react";
 import { useUser } from '@/contexts/UserContext';
 import Link from 'next/link';
+import Logo from "@/components/Logo";
 
 export default function Login() {
 	const router = useRouter();
@@ -49,8 +50,10 @@ export default function Login() {
 
 	return (
 		<div className="flex items-center justify-center h-screen">
+
 			<form className="bg-white p-6 rounded-lg" onSubmit={loginUser}>
-				<div className="mb-4">
+				<div className="flex justify-center"><Logo size="large"/></div>
+				<div className="mb-4 mt-8">
 					<label htmlFor="email" className="sr-only">
 						Email
 					</label>

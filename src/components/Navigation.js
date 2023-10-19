@@ -2,27 +2,47 @@ import {Fragment} from 'react'
 import {Menu, Popover, Transition} from '@headlessui/react'
 import {MagnifyingGlassIcon} from '@heroicons/react/20/solid'
 import {Bars3Icon, BellIcon, XMarkIcon} from '@heroicons/react/24/outline'
+import { IdentificationIcon } from '@heroicons/react/24/solid'
 import {navigation} from "@/data/navData";
+import Link from 'next/link';
+import { useEffect} from "react";
+import { useUser } from '@/contexts/UserContext';
+import { useRouter } from 'next/router';
 import DropDown from "@/components/DropDown";
+import Logo from "@/components/Logo";
 
-const user = {
-	name: 'Chelsea Hagon',
-	email: 'chelsea.hagon@example.com',
-	imageUrl:
-		'https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-}
-
-const userNavigation = [
-	{name: 'Your Profile', href: '#'},
-	{name: 'Settings', href: '#'},
-	{name: 'Sign out', href: '#'},
-]
 
 function classNames(...classes) {
 	return classes.filter(Boolean).join(' ')
 }
 
-export default function Navigation({ user }) {
+export default function Navigation() {
+	const { setUser } = useUser();
+	const router = useRouter();
+
+	useEffect(() => {
+		const fetchUser = async () => {
+			try {
+				const res = await fetch('/api/user', {
+					method: 'GET',
+					credentials: 'include',
+				});
+
+				if (res.status === 200) {
+					const userData = await res.json();
+					setUser(userData);
+				} else {
+					console.error('Failed to fetch user');
+				}
+			} catch (error) {
+				console.error('An error occurred while fetching user data:', error);
+			}
+		};
+
+		fetchUser();
+	}, []);
+
+
 	return (
 		<>
 			{/* When the mobile menu is open, add `overflow-hidden` to the `body` element to prevent double scrollbars */}
@@ -39,17 +59,8 @@ export default function Navigation({ user }) {
 					<>
 						<div className="mx-auto px-4 sm:px-6 lg:px-8 border-b-2">
 							<div className="relative flex items-center justify-between xl:grid xl:grid-cols-12">
-								<div className="flex md:absolute md:inset-y-0 md:left-0 lg:static xl:col-span-2">
-									<div className="flex flex-shrink-0 items-center">
-										<a href="#">
-											<img
-												className="h-8 w-auto"
-												src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-												alt="Your Company"
-											/>
-										</a>
-									</div>
-								</div>
+								<Logo />
+
 								<div className="min-w-0 flex-1 md:px-8 lg:px-0 xl:col-span-8">
 									<div
 										className="flex justify-center items-center px-6 py-4 md:mx-auto xl:max-w-full lg:mx-0 lg:max-w-none xl:px-0">
@@ -75,7 +86,7 @@ export default function Navigation({ user }) {
 									</div>
 								</div>
 								<div className="hidden lg:flex justify-end items-center xl:col-span-2">
-									<DropDown user={user}/>
+									<DropDown />
 								</div>
 								<div className="flex items-center lg:hidden">
 									<Popover.Button

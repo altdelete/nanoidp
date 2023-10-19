@@ -10,7 +10,7 @@ function classNames(...classes) {
 
 export default function DropDown() {
 	const { user } = useUser();
-	const { router } = useRouter();
+	const router = useRouter();
 
 
 	const logout = async () => {
@@ -50,56 +50,62 @@ export default function DropDown() {
 				leaveTo="transform opacity-0 scale-95"
 			>
 				<Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-					<div className="py-1">
-						<div className="block px-4 py-2 text-sm">
-							{user ? `${user.firstName} ${user.lastName}` : 'User Name'}
+					<div className="flex flex-col items-center space-y-2">
+							<h2 className="mt-6 text-center text-xl font-extrabold text-gray-900">
+								Welcome, {user ? user.firstName : 'Loading...'}
+							</h2>
+							<p className="mt-2 text-center text-sm text-gray-600">
+								{user ? user.email : 'Loading...'}
+							</p>
+							<button
+								type="submit"
+								onClick={logout}
+								className="mx-auto px-2 py-1 text-white bg-blue-500 rounded-md max-w-xs"
+							>
+								Logout
+							</button>
 						</div>
-						<div className="block px-4 py-2 text-sm">
-							{user ? user.email : 'Email'}
-						</div>
-						<button onClick={logout} className="block w-full px-4 py-2 text-left text-sm">
-							Logout
-						</button>
+					<div className="py-4">
 						{/* Existing Menu Items */}
-						<Menu.Item>
-							{({ active }) => (
-								<a
-									href="#"
-									className={classNames(
-										active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-										'block px-4 py-2 text-sm'
-									)}
-								>
-									Account settings
-								</a>
-							)}
-						</Menu.Item>
-						<Menu.Item>
-							{({ active }) => (
-								<a
-									href="#"
-									className={classNames(
-										active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-										'block px-4 py-2 text-sm'
-									)}
-								>
-									Support
-								</a>
-							)}
-						</Menu.Item>
-						<Menu.Item>
-							{({ active }) => (
-								<a
-									href="#"
-									className={classNames(
-										active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-										'block px-4 py-2 text-sm'
-									)}
-								>
-									License
-								</a>
-							)}
-						</Menu.Item>
+						{/*<Menu.Item>*/}
+						{/*	{({ active }) => (*/}
+						{/*		<a*/}
+						{/*			href="#"*/}
+						{/*			className={classNames(*/}
+						{/*				active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',*/}
+						{/*				'block px-4 py-2 text-sm'*/}
+						{/*			)}*/}
+						{/*		>*/}
+						{/*			Account settings*/}
+						{/*		</a>*/}
+						{/*	)}*/}
+						{/*</Menu.Item>*/}
+						{/*<Menu.Item>*/}
+						{/*	{({ active }) => (*/}
+						{/*		<a*/}
+						{/*			href="#"*/}
+						{/*			className={classNames(*/}
+						{/*				active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',*/}
+						{/*				'block px-4 py-2 text-sm'*/}
+						{/*			)}*/}
+						{/*		>*/}
+						{/*			Support*/}
+						{/*		</a>*/}
+						{/*	)}*/}
+						{/*</Menu.Item>*/}
+						{/*<Menu.Item>*/}
+						{/*	{({ active }) => (*/}
+						{/*		<a*/}
+						{/*			href="#"*/}
+						{/*			className={classNames(*/}
+						{/*				active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',*/}
+						{/*				'block px-4 py-2 text-sm'*/}
+						{/*			)}*/}
+						{/*		>*/}
+						{/*			License*/}
+						{/*		</a>*/}
+						{/*	)}*/}
+						{/*</Menu.Item>*/}
 					</div>
 				</Menu.Items>
 			</Transition>
