@@ -22,7 +22,7 @@ function classNames(...classes) {
 	return classes.filter(Boolean).join(' ')
 }
 
-export default function Navigation() {
+export default function Navigation({ user }) {
 	return (
 		<>
 			{/* When the mobile menu is open, add `overflow-hidden` to the `body` element to prevent double scrollbars */}
@@ -75,7 +75,7 @@ export default function Navigation() {
 									</div>
 								</div>
 								<div className="hidden lg:flex justify-end items-center xl:col-span-2">
-									<DropDown />
+									<DropDown user={user}/>
 								</div>
 								<div className="flex items-center lg:hidden">
 									<Popover.Button
