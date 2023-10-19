@@ -21,8 +21,10 @@ export default function DropDown() {
 			});
 
 			if (res.status === 200) {
-				router.push('/login'); // Redirect to login page
-			} else {
+				if (typeof window !== 'undefined' && router) {  // Check if on client-side and router is defined
+					router.push('/login');  // Redirect to login page
+				}
+				} else {
 				console.error('Failed to logout');
 			}
 		} catch (error) {
