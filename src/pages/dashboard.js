@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import UserAttributes from '@/components/UserAttributes';
 import Layout from "@/components/Layout";
+import UserTable from "@/components/UserTable";
+import Stats from "@/components/Stats";
 
 const Dashboard = () => {
 	const router = useRouter();
@@ -55,6 +57,7 @@ const Dashboard = () => {
 
 	return (
 		<Layout>
+			<Stats />
 			<div className="flex-grow min-h-screen flex justify-center bg-gray-50 py-4 px-4 ">
 				<div className="max-w-5xl w-full space-y-4 ">
 					{/*<div className="flex flex-col items-center space-y-2">*/}
@@ -76,9 +79,7 @@ const Dashboard = () => {
 						<div className="px-4 py-2 sm:px-6">
 							<h3 className="text-base font-semibold leading-7 text-gray-900">User Information</h3>
 						</div>
-						<div className="px-4 py-5 sm:p-6 bg-white">
-							<UserAttributes user={user} />
-						</div>
+						<UserTable />
 					</div>
 				</div>
 			</div>
