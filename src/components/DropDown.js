@@ -2,6 +2,7 @@ import { Fragment } from 'react';
 import { Menu, Transition } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import { useUser } from '@/contexts/UserContext';
+import { useRouter } from 'next/router';
 
 function classNames(...classes) {
 	return classes.filter(Boolean).join(' ');
@@ -9,6 +10,8 @@ function classNames(...classes) {
 
 export default function DropDown() {
 	const { user } = useUser();
+	const { router } = useRouter();
+
 
 	const logout = async () => {
 		try {

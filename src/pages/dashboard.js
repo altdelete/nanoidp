@@ -41,6 +41,7 @@ const Dashboard = () => {
 					setUser(userData);
 				} else {
 					console.error('Failed to fetch user');
+					router.push('/login');
 				}
 			} catch (error) {
 				console.error('An error occurred while fetching user data:', error);
@@ -51,14 +52,6 @@ const Dashboard = () => {
 
 		fetchData();
 	}, []);
-
-	if (loading) {
-		return <div>Loading...</div>;
-	}
-
-	if (!user) {
-		return <div>Please log in.</div>;
-	}
 
 	return (
 		<Layout>

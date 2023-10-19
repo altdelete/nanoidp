@@ -1,9 +1,11 @@
 import { useRouter } from 'next/router';
-import { useEffect} from "react";
+import { useEffect } from "react";
+import { useUser } from '@/contexts/UserContext';
 import Link from 'next/link';
 
 export default function Login() {
 	const router = useRouter();
+	const { setUser } = useUser(); // Destructure setUser from the context
 
 	useEffect(() => {
 		const checkAuth = async () => {
@@ -33,9 +35,11 @@ export default function Login() {
 		const result = await res.json();
 
 		if (res.status === 200) {
-			// Login successful
+			const UserRes = await fetch('/api/user');
+			const UserData = await UserRes.json();
+			setUser(UserData);
 			// Redirect to home page or dashboard
-			router.push('/dashboard');
+			await router.push('/dashboard');
 		} else {
 			// Login failed
 			alert(`Failed to log in: ${result.message}`);

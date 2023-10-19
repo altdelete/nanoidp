@@ -14,23 +14,31 @@ function MyApp({ Component, pageProps }) {
 
 	useEffect(() => {
 		const authCookie = getCookie('auth');
-		if (authCookie) {
-			// Fetch user data and set it
-			fetch('/api/user', {
-				method: 'GET',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				credentials: 'include',  // Important for cookies to be sent
-			})
-				.then((res) => res.json())
-				.then((userData) => {
-					setUser(userData);
-				})
-				.catch((error) => {
-					console.error('An error occurred while fetching user data:', error);
+
+		const fetchUserData = async () => {
+			try {
+				const res = await fetch('/api/user', {
+					method: 'GET',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					credentials: 'include',  // Important for cookies to be sent
 				});
 
+				if (res.status === 200) {
+					const userData = await res.json();
+					setUser(userData);
+					console.log("User set in _app.js:", userData);
+				} else {
+					console.error('Failed to fetch user');
+				}
+			} catch (error) {
+				console.error('An error occurred while fetching user data:', error);
+			}
+		};
+
+		if (authCookie) {
+			fetchUserData();  // Call the async function
 			router.push('/dashboard');
 		}
 	}, []);

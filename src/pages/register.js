@@ -1,7 +1,9 @@
 import { useRouter } from 'next/router';
+import { useUser } from '@/contexts/UserContext';
 
 export default function Register() {
 	const router = useRouter();
+	const { setuser } = useUser(); // Destructure setUser from the context
 
 	const registerUser = async (event) => {
 		event.preventDefault();
@@ -25,10 +27,13 @@ export default function Register() {
 		const result = await res.json();
 
 		if (res.status === 201) {
+			// Fetch user data and update the context
+			const userRes = await fetch('/api/user');
+			const userData = await userRes.json();
 			// Registration successful
 			alert("User registered successfully!");
 			// Log the user in and redirect to dashboard
-			router.push('/dashboard');
+			await router.push('/dashboard');
 		} else {
 			// Registration failed
 			alert(`Failed to register: ${result.message}`);
