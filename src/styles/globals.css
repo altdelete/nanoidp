@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Hide on small screens */
+@media (max-width: 640px) {
+    .priority-3 {
+        display: none;
+    }
+}
+
+/* Hide on even smaller screens */
+@media (max-width: 480px) {
+    .priority-2 {
+        display: none;
+    }
+}

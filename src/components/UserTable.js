@@ -30,7 +30,7 @@ export default function UserTable() {
 	const toggleAll = () => setSelectedUsers(checked || indeterminate ? [] : users);
 
 	return (
-		<div className="bg-white">
+		<div className="bg-white pl-2">
 			{/* ... (rest of your header and buttons here) ... */}
 			<div className="mt-8 flow-root">
 				<div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -48,9 +48,9 @@ export default function UserTable() {
 										<input type="checkbox" className="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600" ref={checkbox} checked={checked} onChange={toggleAll} />
 									</th>
 									<th className="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">Full Name</th>
-									<th className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Username</th>
-									<th className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Email</th>
-									<th className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Account Age</th>
+									<th className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 priority-2">Username</th>
+									<th className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 priority-3">Email</th>
+									<th className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 priority-3">Account Age</th>
 								</tr>
 								</thead>
 								<tbody className="divide-y divide-gray-200 bg-white">
@@ -72,9 +72,9 @@ export default function UserTable() {
 										</td>
 										<td className="whitespace-nowrap py-4 pr-3 text-sm font-medium">{`${user.firstName} ${user.lastName}`}</td>
 
-										<td className={classNames('whitespace-nowrap px-3 py-4 text-sm text-gray-500', selectedUsers.includes(user) ? 'text-indigo-600' : 'text-gray-500')}>{user.username}</td>
-										<td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{user.email}</td>
-										<td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{Math.floor((new Date() - new Date(user.createdAt)) / (1000 * 60 * 60 * 24))} days</td>
+										<td className={classNames('whitespace-nowrap px-3 py-4 text-sm text-gray-500 priority-2', selectedUsers.includes(user) ? 'text-indigo-600' : 'text-gray-500')}>{user.username}</td>
+										<td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500 priority-3">{user.email}</td>
+										<td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500 priority-3">{Math.floor((new Date() - new Date(user.createdAt)) / (1000 * 60 * 60 * 24))} days</td>
 									</tr>
 								))}
 								</tbody>

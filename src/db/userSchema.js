@@ -5,7 +5,7 @@ export const findUser = async (email) => {
 	return db.collection('users').findOne({ email });
 };
 
-export const createUser = async ({ email, password, firstName, lastName, phoneNumber, dateOfBirth, profilePicture }) => {
+export const createUser = async ({ email, password, firstName, lastName, phoneNumber, dateOfBirth, profilePicture, groups }) => {
 	const { db } = await connectToDB();
 
 	// Check if a user with the same email already exists
@@ -33,6 +33,7 @@ export const createUser = async ({ email, password, firstName, lastName, phoneNu
 		dateOfBirth,
 		profilePicture,
 		emailPrefix,
+		groups,
 		createdAt: new Date()
 	});
 

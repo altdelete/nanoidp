@@ -61,7 +61,7 @@ export default function Navigation() {
 							<div className="relative flex items-center justify-between xl:grid xl:grid-cols-12">
 								<Logo />
 
-								<div className="min-w-0 flex-1 md:px-8 lg:px-0 xl:col-span-8">
+								<div className="min-w-0 flex-1 md:pl-36 md:pr-8 lg:px-0 xl:col-span-8">
 									<div
 										className="flex justify-center items-center px-6 py-4 md:mx-auto xl:max-w-full lg:mx-0 lg:max-w-none xl:px-0">
 										<div className="w-full mx-auto">

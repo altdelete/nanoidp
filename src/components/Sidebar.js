@@ -2,7 +2,7 @@
 
 import { Disclosure } from '@headlessui/react'
 import { ChevronRightIcon } from '@heroicons/react/20/solid'
-import { navigation} from "@/data/navData";
+import { navigation } from "@/data/navData";
 
 function classNames(...classes) {
 	return classes.filter(Boolean).join(' ')
